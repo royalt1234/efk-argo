@@ -1,0 +1,27 @@
+
+
+clusterName: "elasticsearch"
+nodeGroup: "master"
+
+replicas: 1
+minimumMasterNodes: 1
+
+# Resources
+resources:
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "2Gi"
+
+# Disable pod anti-affinity so multiple pods can land on the same node
+antiAffinity: "none"
+antiAffinityTopologyKey: {}
+
+# Disable persistent storage (uses emptyDir instead)
+persistence:
+  enabled: false
+
+# Allow cluster to become healthy with at least yellow status
+clusterHealthCheckParams: "wait_for_status=yellow&timeout=50s"
